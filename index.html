@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <title>API CRUD firebase</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row my-4">
+            <div class="col-md-6 offset-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <form id="postForm">
+                            <div class="form-group">
+                                <label for="title">Title</label>
+                                <input id="title" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="content">Content</label>
+                                <textarea id="content" class="form-control"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="userId">userId</label>
+                                <select id="userId" class="form-control">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                </select>
+                            </div>
+                            <button id="addPost" type="submit" class="btn btn-success btn-block">Add</button>
+                            <button id="updatePost" type="button"
+                                class="btn btn-success d-none btn-block">Update</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row" id="postContainer">
+            <!-- <div class="col-md-4 my-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>HTML, CSS & Javascript</h4>
+                    </div>
+                    <div class="card-body">
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fuga provident ex ipsam vero
+                            tempora fugiat blanditiis veritatis delectus ab. Deserunt molestias quis quaerat fugiat
+                            tenetur asperiores quisquam, cum earum consequatur?</p>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between">
+                        <button class="btn btn-success">Edit</button>
+                        <button class="btn btn-danger">Remove</button>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+    <div class="loader d-none" id="loader">
+        <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <script src="./assets/js/app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: #dcdcdc;
+}
+.success{
+    color:green
+}
+.danger{
+    color: red;
+}
+.card h4{
+    height: 30px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.loader{
+    position: fixed;
+    top:0;
+    left:0;
+    height: 100vh;
+    width:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.col-md-4 .card-body{
+    height: 100px;
+    overflow: auto;
+}
+.col-md-4 .card:hover{
+    transform: scale(.9);
+    box-shadow: 1px 1px 20px 20px rgb(87, 144, 144);
+    border: 2px solid #fff;
+    border-radius: 20px;
+}
