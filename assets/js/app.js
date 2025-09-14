@@ -1,28 +1,31 @@
 let cl = console.log;
 
-const postForm = document.getElementById('postForm')
-const titleControl = document.getElementById('title')
-const contentControl = document.getElementById('content')
-const userIdControl = document.getElementById('userId')
-const addPost = document.getElementById('addPost')
-const updatePost = document.getElementById('updatePost')
-const postContainer = document.getElementById('postContainer')
-const loader = document.getElementById('loader')
+const postForm = document.getElementById('postForm');
+const titleControl = document.getElementById('title');
+const contentControl = document.getElementById('content');
+const userIdControl = document.getElementById('userId');
+const addPost = document.getElementById('addPost');
+const updatePost = document.getElementById('updatePost');
+const postContainer = document.getElementById('postContainer');
+const loader = document.getElementById('loader');
+
+
 
 let BASE_URL = 'https://crud-e663b-default-rtdb.asia-southeast1.firebasedatabase.app'
 let POST_URL = `${BASE_URL}/post.json`
 cl(POST_URL)
 
-const snackBar = (msg, icon) => {
+
+const snackBar = (msg, icon) =>{
     Swal.fire({
         title: msg,
         icon: icon,
-        timer: 2000
+        timer: 3000
     })
 }
 
 const postTemplating = (arr) => {
-    let result = ``;
+    let result = '';
     arr.forEach(blog => {
         result += `<div class="col-md-4 my-4">
                 <div class="card" id="${blog.id}">
@@ -33,45 +36,46 @@ const postTemplating = (arr) => {
                         <p>${blog.content}</p>
                     </div>
                     <div class="card-footer d-flex justify-content-between">
-                        <button onclick = "onEdit(this)" class="btn btn-success">Edit</button>
-                        <button onclick = "onRemove(this)" class="btn btn-danger">Remove</button>
-                    </div>
+                        <button onClick="onEdit(this)" class="btn btn-success btn-sm"> Edit </button>
+                        <button onClick="onRemove(this)" class="btn btn-danger btn-sm"> Remove </button>
                 </div>
-            </div>`
+            </div>
+        </div>`
     })
-    postContainer.innerHTML = result
-}
+    postContainer.innerHTML = result;
 
+}
 const onEdit = (ele) => {
-    let Edit_Id = ele.closest('.card').id
+    let Edit_Id = ele.closest('.card').id;
     cl(Edit_Id)
-    localStorage.setItem('Edit_Id', Edit_Id)
+    localStorage.setItem('Edit_Id', Edit_Id);
     let Edit_URL = `${BASE_URL}/post/${Edit_Id}.json`
 
-    makeApiCall('GET', Edit_URL, null)
+    makeApiCall('GET' , Edit_URL, null)
 }
 
 const onRemove = (ele) => {
-
+    
     Swal.fire({
-        title: "Are you sure?",
+        title: 'Are you sure?',
         text: "You won't be able to revert this!",
-        icon: "warning",
+        icon: 'warning',
         showCancelButton: true,
-        // confirmButtonColor: "#3085d6",
-        // cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!"
     }).then((result) => {
         if (result.isConfirmed) {
-            let Remove_Id = ele.closest('.card').id
-            localStorage.setItem('Remove_Id', Remove_Id)
+            let Remove_Id = ele.closest('.card').id;
+            localStorage.setItem('Remove_Id', Remove_Id);
             cl(Remove_Id)
             let Remove_URL = `${BASE_URL}/post/${Remove_Id}.json`
 
             makeApiCall('DELETE', Remove_URL, null)
+
         }
+
     });
+
 }
+
 
 const makeApiCall = (methodName, url, msgBody) => {
     loader.classList.remove('d-none')
@@ -151,21 +155,25 @@ const makeApiCall = (methodName, url, msgBody) => {
 
 makeApiCall('GET', POST_URL, null)
 
+
+
 const onSubmitPost = (eve) => {
-    eve.preventDefault()
+    eve.preventDefault();
     let postObj = {
         title: titleControl.value,
         content: contentControl.value,
         userId: userIdControl.value
+
     }
     cl(postObj)
     makeApiCall('POST', POST_URL, postObj)
+
 }
 
-postForm.addEventListener('submit', onSubmitPost)
+postForm.addEventListener('submit', onSubmitPost);
 
 const onUpdatePost = (eve) => {
-    let Update_Id = localStorage.getItem('Edit_Id')
+    let Update_Id = localStorage.getItem('Edit_Id');
     cl(Update_Id)
     let Update_URL = `${BASE_URL}/post/${Update_Id}.json`
     let Update_Obj = {
@@ -178,4 +186,4 @@ const onUpdatePost = (eve) => {
     makeApiCall('PATCH', Update_URL, Update_Obj)
 }
 
-updatePost.addEventListener('click', onUpdatePost)
+updatePost.addEventListener('click', onUpdatePost);
